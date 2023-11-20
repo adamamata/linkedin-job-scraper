@@ -1,0 +1,20 @@
+{
+  "name": "linkedin_job_scrape",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "node-cron": "^3.0.3",
+    "openai": "^4.17.5",
+    "puppeteer": "^21.5.1",
+    "uuid": "^9.0.1"
+  }
+}

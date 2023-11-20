@@ -7,7 +7,7 @@ const getHTML = async () => {
     const jsonFile = './data/jobListings.json';
     const jobListings = readFromFile(jsonFile);
     
-    const chunkSize = 2; 
+    const chunkSize = 5;
     const chunks = chunkArray(jobListings, chunkSize);
 
     const browser = await puppeteer.launch();
@@ -23,11 +23,20 @@ const getHTML = async () => {
 
                 // Retrieve inner text content
                 const textContent = await page.evaluate(() => {
-                    const element = document.querySelector('.decorated-job-posting__details');
-                    return element ? element.innerText : 'Content not found';
+                    const element1 = document.querySelector('.top-card-layout__card');
+                    const element2 = document.querySelector('.decorated-job-posting__details');
+
+                    if (element1 && element2) {
+                        let textContentFinal = element1.innerText + element2.innerText;
+                        return { textContentFinal };
+                    } else {
+                        return null;
+                    }
                 });
 
-                extractedContents[url] = textContent; 
+                if (textContent) {
+                    extractedContents[url] = textContent; 
+                }
 
             } catch (error) {
                 console.error(`Error scraping ${url}:`, error);

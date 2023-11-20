@@ -11,7 +11,7 @@ const scrapeJobListings = async () => {;
         await page.waitForSelector('.job-search-card', { timeout: 60000 });
     
         let totalListings = 0;
-        const maxListings = 50;
+        const maxListings = 20;
     
         while (totalListings < maxListings) {
           await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));

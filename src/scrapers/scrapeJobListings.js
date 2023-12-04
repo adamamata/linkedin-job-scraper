@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 const { saveToFile } = require('../utils/fileUtils');
 
-const scrapeJobListings = async () => {;
+const scrapeJobListings = async () => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     let jobListings = [];
@@ -11,7 +11,7 @@ const scrapeJobListings = async () => {;
         await page.waitForSelector('.job-search-card', { timeout: 60000 });
     
         let totalListings = 0;
-        const maxListings = 20;
+        const maxListings = 1000;
     
         while (totalListings < maxListings) {
           await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
